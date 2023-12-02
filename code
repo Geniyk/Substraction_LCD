@@ -1,0 +1,40 @@
+#include <LiquidCrystal.h>
+int rs=12,en=11,D4=5,D5=4,D6=3,D7=2;
+LiquidCrystal lcd(rs, en, D4, D5, D6, D7);
+String n1,n2;
+int res;
+
+void setup() {
+  lcd.begin(16, 2);
+  // you can now interact with the LCD, e.g.:
+  Serial.begin(9600);
+  //Serial.print("Hello World!");
+}
+
+void loop() {
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Input number 1");
+while(Serial.available()==0){}
+n1=Serial.readString();
+lcd.setCursor(0,1);
+lcd.print(n1);
+delay(1000);
+
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Input number 2");
+while(Serial.available()==0){}
+n2=Serial.readString();
+lcd.setCursor(0,1);
+lcd.print(n2);
+delay(1000);
+
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("Substraction is:");
+lcd.setCursor(0,1);
+res=n1.toInt()- n2.toInt();
+lcd.print(res);
+delay(500);
+}
